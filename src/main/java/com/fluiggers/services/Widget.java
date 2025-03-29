@@ -48,7 +48,7 @@ public class Widget extends FluiggersWidgetBase {
             return notAuthorizedResponse();
         }
 
-        if (!widgetFilename.endsWith(".war") || widgetFilename.matches("^[./\\]")) {
+        if (!widgetFilename.endsWith(".war") || widgetFilename.matches("^[./\\\\]")) {
             return Response.status(Status.BAD_REQUEST).entity("Operação Inválida.").build();
         }
 
