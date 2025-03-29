@@ -48,10 +48,14 @@ public class Widget extends FluiggersWidgetBase {
             return notAuthorizedResponse();
         }
 
+        if (!widgetFilename.endsWith(".war") || widgetFilename.matches("^[./\\]")) {
+            return Response.status(Status.BAD_REQUEST).entity("Operação Inválida.").build();
+        }
+
         File widgetFile = new File(getAppWidgetsPath() + File.separator + widgetFilename);
 
         if (!widgetFile.exists()) {
-            return Response.status(Status.NOT_FOUND).entity("Widget não encontrada").build();
+            return Response.status(Status.NOT_FOUND).entity("Widget não encontrada.").build();
         }
 
         return Response.ok(new FileInputStream(widgetFile)).build();
