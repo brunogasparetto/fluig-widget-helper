@@ -1,0 +1,15 @@
+application.type=widget
+application.code=fluiggersWidget
+application.title=Fluiggers Widget
+application.description=Conjunto de endpoints para auxiliar no desenvolvimento no Fluig usando a extens\u00E3o do VS Code
+application.category=Fluiggers
+application.renderer=freemarker
+developer.code=SPO-23714
+developer.name=daniel.sales
+developer.url=http://www.fluiggers.com.br
+application.uiwidget=false
+application.mobileapp=false
+application.version=0.0.1
+view.file=view.ftl
+edit.file=edit.ftl
+simple.deploy=false

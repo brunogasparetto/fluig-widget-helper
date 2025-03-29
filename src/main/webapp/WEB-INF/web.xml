@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+    version="3.0"
+>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+
+    <security-constraint>
+        <display-name>fluiggersWidget API</display-name>
+        <web-resource-collection>
+            <web-resource-name>fluiggersWidget API</web-resource-name>
+            <description>fluiggersWidget API</description>
+            <url-pattern>/api/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>fluiggersWidget API</description>
+            <role-name>user</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-role>
+        <role-name>totvstech</role-name>
+    </security-role>
+
+    <security-role>
+        <role-name>user</role-name>
+    </security-role>
+
+    <security-role>
+        <role-name>sysadmin</role-name>
+    </security-role>
+</web-app>

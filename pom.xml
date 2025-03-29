@@ -1,0 +1,110 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.fluiggers</groupId>
+	<artifactId>fluiggersWidget</artifactId>
+	<version>0.1.0</version>
+
+	<packaging>war</packaging>
+
+	<name>fluiggersWidget</name>
+	<description>Conjunto de endpoints para auxiliar no desenvolvimento no Fluig usando a extensão do VS Code</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<fluig.version>1.8.2</fluig.version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>nexus</id>
+			<name>fluig Nexus Repository</name>
+			<url>https://nexus.fluig.com/repository/public</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+
+		<!-- fluig dependecies -->
+		<!-- <dependency>
+			<groupId>com.fluig</groupId>
+			<artifactId>foundation-common</artifactId>
+			<version>${fluig.version}</version>
+			<scope>provided</scope>
+		</dependency> -->
+		<!-- <dependency>
+			<groupId>com.fluig</groupId>
+			<artifactId>fluig-sdk</artifactId>
+			<version>${fluig.version}</version>
+			<type>pom</type>
+		</dependency> -->
+		<dependency>
+			<groupId>com.fluig</groupId>
+			<artifactId>fluig-sdk-common</artifactId>
+			<version>${fluig.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fluig</groupId>
+			<artifactId>fluig-sdk-api</artifactId>
+			<version>${fluig.version}</version>
+		</dependency>
+
+		<!-- /fluig dependecies -->
+
+		<!-- others -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>8.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.logging</groupId>
+			<artifactId>jboss-logging</artifactId>
+			<version>3.6.1.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20250107</version>
+		</dependency>
+		<!-- /others -->
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>3.4.1</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.3.1</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.5.2</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.4.0</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.14.0</version>
+				<configuration>
+					<source>11</source>
+					<target>11</target>
+				</configuration>
+			</plugin>
+		</plugins>
+		<finalName>${project.artifactId}</finalName>
+	</build>
+</project>
