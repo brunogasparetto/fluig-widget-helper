@@ -12,9 +12,9 @@ Exceto pelo endpoint de Ping, todos os outros exigem que o usuário logado possu
 
 `GET /fluiggersWidget/api/ping` - Retorna um "pong" indicando que a widget está instalada;
 
-`GET /fluiggersWidget/api/widget` - Retorna um array contendo o nome dos arquivos das widgets encontradas na pasta `apps` do Fluig;
+`GET /fluiggersWidget/api/widgets` - Retorna um array contendo o nome dos arquivos das widgets encontradas na pasta `apps` do Fluig;
 
-`GET /fluiggersWidget/api/widget/nome_arquivo.war` - Efetua o download do arquivo indicado;
+`GET /fluiggersWidget/api/widgets/nome_arquivo.war` - Efetua o download do arquivo indicado;
 
 ## Contribuindo com o Projeto
 

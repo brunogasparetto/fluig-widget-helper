@@ -13,7 +13,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import org.json.JSONArray;
 
-@Path("/widget")
+@Path("/widgets")
 public class Widget extends FluiggersWidgetBase {
 
     @GET
