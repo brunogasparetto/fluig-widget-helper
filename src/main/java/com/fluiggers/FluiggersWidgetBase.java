@@ -4,11 +4,9 @@ import com.fluig.sdk.api.common.SDKException;
 import com.fluig.sdk.service.SecurityService;
 import com.fluig.sdk.service.UserService;
 import com.fluig.sdk.tenant.AdminUserVO;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
 import javax.ejb.EJB;
 import javax.naming.InitialContext;
 import javax.servlet.ServletContext;

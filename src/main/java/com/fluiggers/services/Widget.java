@@ -29,6 +29,10 @@ public class Widget extends FluiggersWidgetBase {
 
         log.info("Listando as Widgets");
 
+        if (!isUserLoggedAdmin()) {
+            return notAuthorizedResponse();
+        }
+
         JSONArray widgets = new JSONArray();
 
         InitialContext ic = null;
