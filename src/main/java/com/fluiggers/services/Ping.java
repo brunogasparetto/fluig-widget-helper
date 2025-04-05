@@ -10,7 +10,7 @@ import javax.ws.rs.Produces;
 public class Ping {
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     public Response ping() {
         return Response.ok("pong").build();
     }
