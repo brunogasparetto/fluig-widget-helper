@@ -31,7 +31,7 @@ public class Workflow extends FluiggersWidgetBase {
             return notAuthorizedResponse();
         }
 
-        if (processId == null || processId.isEmpty()) {
+        if (processId.isBlank()) {
             return Response
                 .status(Status.BAD_REQUEST)
                 .entity("Necessário informar o código do processo.")
@@ -97,15 +97,19 @@ public class Workflow extends FluiggersWidgetBase {
             return notAuthorizedResponse();
         }
 
+        JSONObject responseBody = new JSONObject();
+
         if (processId.isBlank() || version <= 0) {
+            responseBody.put("hasErrors", true);
+            responseBody.put("message", "Necessário indicar o processo e versão");
+
             return Response
                 .status(Status.BAD_REQUEST)
-                .entity("Necessário indicar o processo e versão")
+                .entity(responseBody.toString())
                 .build()
             ;
         }
 
-        JSONObject responseBody = new JSONObject();
         JSONArray eventsErrors = new JSONArray();
         JSONArray eventsSuccesses = new JSONArray();
         Boolean hasError = false;
@@ -188,6 +192,13 @@ public class Workflow extends FluiggersWidgetBase {
                 responseBody.put("totalProcessed", totalProcessed);
                 responseBody.put("errors", eventsErrors);
                 responseBody.put("successes", eventsSuccesses);
+
+                responseBody.put(
+                    "message",
+                    hasError
+                    ? "Houveram erros ao atualizar os eventos."
+                    : "Todos os eventos foram atualizados."
+                );
             } catch (Exception e) {
                 log.error(e);
             } finally {
