@@ -1,6 +1,5 @@
 package com.fluiggers.services;
 
-
 import com.fluiggers.FluiggersWidgetBase;
 import java.io.File;
 import java.io.FileInputStream;
@@ -66,7 +65,12 @@ public class Widget extends FluiggersWidgetBase {
             return Response.ok(widgets.toString()).build();
         } catch (Exception e) {
             log.error(e);
-            return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Verifique o Log do Fluig para mais informações.").build();
+
+            return Response
+                .status(Status.INTERNAL_SERVER_ERROR)
+                .entity("Verifique o Log do Fluig para mais informações.")
+                .build()
+            ;
         } finally {
             closeDatabaseResources(ic, conn, stmt, rs);
         }
