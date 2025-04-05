@@ -23,7 +23,7 @@ import org.json.JSONObject;
 public class Workflow extends FluiggersWidgetBase {
 
     @GET
-    @Path("/version/{processId}")
+    @Path("/{processId}/version")
     @Produces(MediaType.APPLICATION_JSON)
     public Response version(@PathParam("processId") String processId) {
 
@@ -84,7 +84,7 @@ public class Workflow extends FluiggersWidgetBase {
     }
 
     @PUT
-    @Path("/events/{processId}/{version}")
+    @Path("/{processId}/{version}/events")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response update(

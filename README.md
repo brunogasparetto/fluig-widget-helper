@@ -16,9 +16,9 @@ Exceto pelo endpoint de Ping, todos os outros exigem que o usuário logado possu
 
 `GET /fluiggersWidget/api/widgets/{nome_arquivo}.war` - Efetua o download do arquivo indicado;
 
-`GET /fluiggersWidget/api/workflows/version/{processId}` - Pega a última versão do processo informado;
+`GET /fluiggersWidget/api/workflows/{processId}/version` - Pega a última versão do processo informado;
 
-`PUT /fluiggersWidget/api/workflows/events/{processId}/{version}` - Atualiza múltiplos eventos do processo na versão indicada;
+`PUT /fluiggersWidget/api/workflows/{processId}/{version}/events` - Atualiza múltiplos eventos do processo na versão indicada;
 
 ## Contribuindo com o Projeto
 
