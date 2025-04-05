@@ -51,10 +51,11 @@ public class Workflow extends FluiggersWidgetBase {
             stmt = conn.prepareStatement(
                 "SELECT MAX(NUM_VERS) AS VERSION "
                 + "FROM VERS_DEF_PROCES "
-                + "WHERE COD_DEF_PROCES = ?"
+                + "WHERE COD_EMPRESA = ? AND COD_DEF_PROCES = ?"
             );
 
-            stmt.setString(1, processId);
+            stmt.setLong(1, securityService.getCurrentTenantId());
+            stmt.setString(2, processId);
             rs = stmt.executeQuery();
 
             if (rs.next()) {
