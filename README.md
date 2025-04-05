@@ -16,6 +16,10 @@ Exceto pelo endpoint de Ping, todos os outros exigem que o usuário logado possu
 
 `GET /fluiggersWidget/api/widgets/nome_arquivo.war` - Efetua o download do arquivo indicado;
 
+`GET /fluiggersWidget/api/workflows/version?processId=?` - Pega a última versão do processo informado;
+
+`PUT /fluiggersWidget/api/workflows/events` - Atualiza múltiplos eventos do processo na versão indicada;
+
 ## Contribuindo com o Projeto
 
 Para compilar o projeto é necessário ter o Maven instalado e ter credenciais de acesso ao [Repositório do Fluig](https://nexus.fluig.com/) (para isso é necessário abrir um chamado no Suporte da TOTVS).
