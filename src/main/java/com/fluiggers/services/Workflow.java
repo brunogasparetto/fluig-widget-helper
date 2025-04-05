@@ -12,9 +12,9 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.PUT;
-import javax.ws.rs.QueryParam;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,9 +23,9 @@ import org.json.JSONObject;
 public class Workflow extends FluiggersWidgetBase {
 
     @GET
-    @Path("/version")
+    @Path("/version/{processId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response version(@QueryParam("processId") String processId) {
+    public Response version(@PathParam("processId") String processId) {
 
         if (!isUserLoggedAdmin()) {
             return notAuthorizedResponse();
@@ -84,13 +84,25 @@ public class Workflow extends FluiggersWidgetBase {
     }
 
     @PUT
-    @Path("/events")
+    @Path("/events/{processId}/{version}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response update(String requestBody) throws Exception {
+    public Response update(
+        @PathParam("processId") String processId,
+        @PathParam("version") int version,
+        String requestBody
+    ) throws Exception {
 
         if (!isUserLoggedAdmin()) {
             return notAuthorizedResponse();
+        }
+
+        if (processId.isBlank() || version <= 0) {
+            return Response
+                .status(Status.BAD_REQUEST)
+                .entity("Necessário indicar o processo e versão")
+                .build()
+            ;
         }
 
         JSONObject responseBody = new JSONObject();
@@ -99,23 +111,19 @@ public class Workflow extends FluiggersWidgetBase {
         Boolean hasError = false;
         int totalProcessed = 0;
 
-        try {
-            JSONObject bodyObject = new JSONObject(requestBody);
-            JSONArray events = bodyObject.getJSONArray("events");
-            long tenantId = securityService.getCurrentTenantId();
-            int version = bodyObject.getInt("version");
-            String processId = bodyObject.getString("processId");
+        responseBody.put("processId", processId);
+        responseBody.put("version", version);
 
-            if (version == 0 || processId == "") {
-                throw new JSONException("Obrigatório informar valores válidos para o processId e version.");
-            }
+        try {
+            JSONArray events = new JSONArray(requestBody);
+            long tenantId = securityService.getCurrentTenantId();
 
             if (events.isEmpty()) {
                 throw new JSONException("Obrigatório informar eventos para atualizar.");
             }
 
             log.info(
-                "Atualizando eventos do processo " + bodyObject.getString("processId")
+                "Atualizando eventos do processo " + processId
                 + "\nVersão " + version
                 + "\nEmpresa " + tenantId
                 + "\nTotal de eventos enviados: " + events.length()
@@ -144,13 +152,13 @@ public class Workflow extends FluiggersWidgetBase {
 
                     ++totalProcessed;
 
-                    if (!event.has("name") || event.getString("name").isEmpty()) {
+                    if (!event.has("name") || event.getString("name").isBlank()) {
                         hasError = true;
                         eventsErrors.put("Evento informado no índice " + scriptIndex + " não possuí nome.");
                         continue;
                     }
 
-                    if (!event.has("contents") || event.getString("contents").isEmpty()) {
+                    if (!event.has("contents") || event.getString("contents").isBlank()) {
                         hasError = true;
                         eventsErrors.put(
                             event.getString("name") + " não possuí conteúdo. "
