@@ -29,18 +29,6 @@
 	<dependencies>
 
 		<!-- fluig dependecies -->
-		<!-- <dependency>
-			<groupId>com.fluig</groupId>
-			<artifactId>foundation-common</artifactId>
-			<version>${fluig.version}</version>
-			<scope>provided</scope>
-		</dependency> -->
-		<!-- <dependency>
-			<groupId>com.fluig</groupId>
-			<artifactId>fluig-sdk</artifactId>
-			<version>${fluig.version}</version>
-			<type>pom</type>
-		</dependency> -->
 		<dependency>
 			<groupId>com.fluig</groupId>
 			<artifactId>fluig-sdk-common</artifactId>
@@ -51,7 +39,6 @@
 			<artifactId>fluig-sdk-api</artifactId>
 			<version>${fluig.version}</version>
 		</dependency>
-
 		<!-- /fluig dependecies -->
 
 		<!-- others -->
@@ -61,7 +48,6 @@
 			<version>8.0.1</version>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.jboss.logging</groupId>
 			<artifactId>jboss-logging</artifactId>

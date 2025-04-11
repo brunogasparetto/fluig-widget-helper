@@ -68,7 +68,6 @@ public abstract class FluiggersWidgetBase {
                 log.error(e);
             }
         }
-
         if (stmt != null) {
             try {
                 stmt.close();
