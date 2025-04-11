@@ -2,4 +2,5 @@
 .vscode
 .project
 .classpath
-target/
+target/*
+!target/*.war
