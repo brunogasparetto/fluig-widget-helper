@@ -25,3 +25,8 @@ Exceto pelo endpoint de Ping, todos os outros exigem que o usuário logado possu
 Para compilar o projeto é necessário ter o Maven instalado e ter credenciais de acesso ao [Repositório do Fluig](https://nexus.fluig.com/) (para isso é necessário abrir um chamado no Suporte da TOTVS).
 
 Você também pode contribuir abrindo issues indicando bugs e sugestões de melhorias.
+
+### Contribuidores
+
+- [Bruno Gasparetto](https://github.com/brunogasparetto)
+- [Daniel Bom Conselho Sales](https://github.com/danielbomconselho)
