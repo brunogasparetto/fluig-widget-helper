@@ -48,7 +48,7 @@ public class Widget extends FluiggersWidgetBase {
             rs = stmt.executeQuery(
                 "SELECT APPLICATION_CODE, APPLICATION_TITLE, DESCRIPTION, FILE_NAME "
                 + "FROM wcm_application "
-                + "WHERE INTERNAL = 0 AND APPLICATION_TYPE = 'widget' "
+                + "WHERE INTERNAL = 0 AND APPLICATION_TYPE = 'widget' AND EAR_FILE_NAME IS NULL "
                 + "ORDER BY APPLICATION_TITLE"
             );
 
