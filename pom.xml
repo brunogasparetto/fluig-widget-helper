@@ -29,6 +29,7 @@
 	<dependencies>
 
 		<!-- fluig dependecies -->
+
 		<dependency>
 			<groupId>com.fluig</groupId>
 			<artifactId>fluig-sdk-common</artifactId>
@@ -39,31 +40,27 @@
 			<artifactId>fluig-sdk-api</artifactId>
 			<version>${fluig.version}</version>
 		</dependency>
+
 		<!-- /fluig dependecies -->
 
-		<!-- others -->
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 			<version>8.0.1</version>
 			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.jboss.logging</groupId>
 			<artifactId>jboss-logging</artifactId>
 			<version>3.6.1.Final</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20250107</version>
-		</dependency>
-		<!-- /others -->
-
 	</dependencies>
 
 	<build>
+		<finalName>${project.artifactId}</finalName>
+
 		<plugins>
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
@@ -91,6 +88,5 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<finalName>${project.artifactId}</finalName>
 	</build>
 </project>
