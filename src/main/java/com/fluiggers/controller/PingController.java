@@ -1,4 +1,4 @@
-package com.fluiggers.controllers;
+package com.fluiggers.controller;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

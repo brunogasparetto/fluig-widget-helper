@@ -1,11 +1,12 @@
-package com.fluiggers.controllers;
+package com.fluiggers.controller;
 
-import com.fluig.sdk.service.SecurityService;
-import com.fluig.sdk.service.UserService;
 import javax.ejb.EJB;
 import javax.ws.rs.ForbiddenException;
 
 import org.jboss.logging.Logger;
+
+import com.fluig.sdk.service.SecurityService;
+import com.fluig.sdk.service.UserService;
 
 public abstract class BaseController {
     protected final Logger log = Logger.getLogger(getClass());
