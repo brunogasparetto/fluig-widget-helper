@@ -1,4 +1,1 @@
-<div id="MyWidget_${instanceId}" class="super-widget wcm-widget-class fluig-style-guide" data-params="MyWidget.instance()">
-
-</div>
-
+<div id="fluiggersWidget_${instanceId}" class="super-widget wcm-widget-class fluig-style-guide"></div>
