@@ -6,7 +6,7 @@ Essa Widget, fluiggersWidget, fornece um conjunto de endpoints para auxiliar no 
 
 Para acessar os endpoints é necessário estar logado no Fluig e encaminhar os Cookies de autenticação junto na requisição.
 
-Exceto pelo endpoint de Ping, todos os outros exigem que o usuário logado possua papel `admin` no Fluig, pois entendemos que são recursos que devem ter o máximo de restrição de acesso.
+Todos os endpoints exigem que o usuário logado possua papel `admin` no Fluig, pois entendemos que são recursos que devem ter o máximo de restrição de acesso.
 
 ## Endpoints Criados
 
@@ -18,7 +18,7 @@ Exceto pelo endpoint de Ping, todos os outros exigem que o usuário logado possu
 
 `GET /fluiggersWidget/api/workflows/{processId}/version` - Pega a última versão do processo informado;
 
-`PUT /fluiggersWidget/api/workflows/{processId}/{version}/events` - Atualiza múltiplos eventos do processo na versão indicada;
+`PUT /fluiggersWidget/api/workflows/{processId}/{version}/events` - Atualiza/Cria múltiplos eventos do processo na versão indicada;
 
 ## Contribuindo com o Projeto
 
