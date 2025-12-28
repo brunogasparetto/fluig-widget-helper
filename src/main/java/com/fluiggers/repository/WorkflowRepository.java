@@ -130,12 +130,13 @@ public class WorkflowRepository extends BaseRepository {
             ) {
                 conn.setAutoCommit(false);
 
+                stmt.setLong(2, tenantId);
+                stmt.setString(3, processId);
+                stmt.setInt(5, version);
+
                 for (WorkflowEventDto event : events) {
                     stmt.setString(1, event.getContents());
-                    stmt.setLong(2, tenantId);
-                    stmt.setString(3, processId);
                     stmt.setString(4, event.getName());
-                    stmt.setInt(5, version);
 
                     stmt.addBatch();
                 }
@@ -204,6 +205,7 @@ public class WorkflowRepository extends BaseRepository {
                 for (WorkflowEventDto event : events) {
                     stmt.setString(7, event.getName());
                     stmt.setString(8, event.getContents());
+
                     stmt.addBatch();
                 }
 
