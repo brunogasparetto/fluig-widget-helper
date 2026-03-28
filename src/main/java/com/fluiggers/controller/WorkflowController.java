@@ -26,15 +26,12 @@ public class WorkflowController extends BaseController {
     @Produces(MediaType.APPLICATION_JSON)
     public int maxVersion(@PathParam("processId") String processId) {
 
-        assertUserAccess();
-
         if (processId.isBlank()) {
             throw new BadRequestException("Necessário informar o processId");
         }
 
         try {
-            var service = new WorkflowService();
-            return service.getMaxVersion(securityService.getCurrentTenantId(), processId);
+            return new WorkflowService().getMaxVersion(securityService.getCurrentTenantId(), processId);
         } catch (WorkflowNotFoundedException e) {
             throw new NotFoundException(e.getMessage());
         } catch (Exception e) {
@@ -52,8 +49,6 @@ public class WorkflowController extends BaseController {
         @PathParam("version") int version,
         List<WorkflowEventDto> events
     ) {
-
-        assertUserAccess();
 
         if (processId.isBlank()) {
             throw new BadRequestException("Necessário informar o processId");

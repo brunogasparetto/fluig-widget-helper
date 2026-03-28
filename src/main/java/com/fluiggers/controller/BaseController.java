@@ -1,5 +1,6 @@
 package com.fluiggers.controller;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ws.rs.ForbiddenException;
 
@@ -17,7 +18,8 @@ public abstract class BaseController {
     @EJB(lookup = UserService.JNDI_REMOTE_NAME)
     protected UserService userService;
 
-    protected void assertUserAccess() {
+    @PostConstruct
+    private void assertUserAccess() {
         try {
             String login = userService.getCurrent().getLogin();
 
@@ -30,7 +32,9 @@ public abstract class BaseController {
             if (isAdmin) {
                 return;
             }
-        } catch (Exception ignore) {}
+        } catch (Exception ignore) {
+            log.error(ignore);
+        }
 
         throw new ForbiddenException();
     }

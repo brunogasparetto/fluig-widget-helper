@@ -22,12 +22,8 @@ public class WidgetController extends BaseController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<WidgetDto> list() {
-        assertUserAccess();
-
-        var service = new WidgetService();
-
         try {
-            return service.findAll();
+            return new WidgetService().findAll();
         } catch (Exception e) {
             log.error(e);
         }
@@ -42,8 +38,6 @@ public class WidgetController extends BaseController {
         @Context ServletContext context,
         @PathParam("filename") String filename
     ) {
-        assertUserAccess();
-
         try {
             var service = new WidgetService();
             var inputStream = service.getWidgetFileInputStream(context, filename);
