@@ -35,7 +35,10 @@ public class WorkflowController extends BaseController {
         } catch (WorkflowNotFoundedException e) {
             throw new NotFoundException(e.getMessage());
         } catch (Exception e) {
-            log.error(e);
+            log.error(
+                "Erro não identificado ao procurar última versão do processo \"" + processId + "\"",
+                e
+            );
             throw new InternalServerErrorException("Consulte o Log do Fluig para mais informações.");
         }
     }
@@ -74,7 +77,10 @@ public class WorkflowController extends BaseController {
         } catch (WorkflowNotFoundedException e) {
             throw new NotFoundException(e.getMessage());
         } catch (Exception e) {
-            log.error(e);
+            log.error(
+                "Erro não identificado ao buscar metadados do processo \"" + processId + "\"",
+                e
+            );
             throw new InternalServerErrorException("Consulte o Log do Fluig para mais informações.");
         }
 
@@ -85,7 +91,10 @@ public class WorkflowController extends BaseController {
         try {
             return service.updateEvents(tenantId, processId, version, userCode, events);
         } catch (Exception e) {
-            log.error(e);
+            log.error(
+                "Erro não identificado ao atualizar eventos do processo \"" + processId + "\"",
+                e
+            );
             throw new InternalServerErrorException("Consulte o Log do Fluig para mais informações.");
         }
     }

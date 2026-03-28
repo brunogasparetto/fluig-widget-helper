@@ -13,14 +13,15 @@ import java.util.Set;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fluiggers.dto.SuccessesAndErrorsDto;
 import com.fluiggers.dto.WorkflowEventDto;
 import com.fluiggers.exception.WorkflowNotFoundedException;
 
 public class WorkflowRepository extends BaseRepository {
-    protected final Logger log = Logger.getLogger(getClass());
+    protected final Logger log = LoggerFactory.getLogger(getClass());
 
     public int findMaxVersion(long tenantId, String processId) throws SQLException, Exception {
         InitialContext ic = null;
@@ -87,8 +88,11 @@ public class WorkflowRepository extends BaseRepository {
                     }
                 }
             }
-        } catch (Exception e) {
-            log.error(e);
+        } catch (Exception ignore) {
+            log.error(
+                "Erro não identificado ao buscar eventos do processo \"" + processId + "\"",
+                ignore
+            );
         } finally {
             if (ic != null) {
                 try { ic.close(); } catch (Exception ignore) {}
@@ -150,7 +154,10 @@ public class WorkflowRepository extends BaseRepository {
                 }
             }
         } catch (Exception e) {
-            log.error(e);
+            log.error(
+                "Erro não identificado ao atualizar eventos do processo \"" + processId + "\"",
+                e
+            );
 
             for (WorkflowEventDto event : events) {
                 result.addError(event.getName() + " não foi atualizado.");
@@ -218,7 +225,10 @@ public class WorkflowRepository extends BaseRepository {
                 }
             }
         } catch (Exception e) {
-            log.error(e);
+            log.error(
+                "Erro não identificado ao criar eventos do processo \"" + processId + "\"",
+                e
+            );
 
             for (WorkflowEventDto event : events) {
                 result.addError(event.getName() + " não foi criado.");

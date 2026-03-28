@@ -1,11 +1,13 @@
 package com.fluiggers.controller;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.GET;
+import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -24,8 +26,8 @@ public class WidgetController extends BaseController {
     public List<WidgetDto> list() {
         try {
             return new WidgetService().findAll();
-        } catch (Exception e) {
-            log.error(e);
+        } catch (Exception ignore) {
+            log.error("Erro não capturado ao listar widgets", ignore);
         }
 
         return new ArrayList<WidgetDto>();
@@ -42,18 +44,18 @@ public class WidgetController extends BaseController {
             var service = new WidgetService();
             var inputStream = service.getWidgetFileInputStream(context, filename);
 
-            try {
-                log.infof(
-                    "Usuário \"%s\" efetuou download da Widget \"%s\"",
-                    userService.getCurrent().getLogin(),
-                    filename
-                );
-            } catch (Exception ignore) { }
+            log.info(
+                "Usuário \"{}\" efetuou download da Widget \"{}\"",
+                userService.getCurrent().getLogin(),
+                filename
+            );
 
             return inputStream;
-        } catch (Exception e) {
-            log.error(e);
+        } catch (FileNotFoundException e) {
             throw new NotFoundException();
+        } catch (Exception e) {
+            log.error("Erro efetuar download da widget \"" + filename + "\"", e);
+            throw new InternalServerErrorException("Consulte o Log do Fluig para mais informações.");
         }
     }
 }

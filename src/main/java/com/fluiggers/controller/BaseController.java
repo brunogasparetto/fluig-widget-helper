@@ -4,13 +4,14 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ws.rs.ForbiddenException;
 
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fluig.sdk.service.SecurityService;
 import com.fluig.sdk.service.UserService;
 
 public abstract class BaseController {
-    protected final Logger log = Logger.getLogger(getClass());
+    protected final Logger log = LoggerFactory.getLogger(getClass());
 
     @EJB(lookup = SecurityService.JNDI_REMOTE_NAME)
     protected SecurityService securityService;
@@ -33,7 +34,7 @@ public abstract class BaseController {
                 return;
             }
         } catch (Exception ignore) {
-            log.error(ignore);
+            log.error("Erro não capturado ao validar usuário Administrador", ignore);
         }
 
         throw new ForbiddenException();
