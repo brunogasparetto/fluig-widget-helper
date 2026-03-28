@@ -12,7 +12,6 @@ public class PingController extends BaseController {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public Response ping() {
-        assertUserAccess();
         return Response.ok("pong").build();
     }
 }

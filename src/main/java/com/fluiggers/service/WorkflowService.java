@@ -13,8 +13,7 @@ import com.fluiggers.repository.WorkflowRepository;
 
 public class WorkflowService {
     public int getMaxVersion(long tenantId, String processId) throws Exception {
-        var repository = new WorkflowRepository();
-        return repository.findMaxVersion(tenantId, processId);
+        return new WorkflowRepository().findMaxVersion(tenantId, processId);
     }
 
     public WorkflowUpdatedEventsDto updateEvents(
