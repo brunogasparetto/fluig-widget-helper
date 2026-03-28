@@ -13,15 +13,14 @@ import com.fluiggers.repository.WidgetRepository;
 public class WidgetService {
 
     public List<WidgetDto> findAll() throws Exception {
-        var repository = new WidgetRepository();
-        return repository.findAll();
+        return new WidgetRepository().findAll();
     }
 
     public FileInputStream getWidgetFileInputStream(
-        ServletContext context,
+        ServletContext servletContext,
         String filename
     ) throws FileNotFoundException {
-        File widgetFile = new File(getAppWidgetsPath(context) + File.separator + filename);
+        File widgetFile = new File(getWidgetPath(servletContext, filename));
 
         if (!widgetFile.exists() || !widgetFile.isFile()) {
             throw new FileNotFoundException();
@@ -30,12 +29,14 @@ public class WidgetService {
         return new FileInputStream(widgetFile);
     }
 
-    private String getAppWidgetsPath(ServletContext servletContext) {
+    private String getWidgetPath(ServletContext servletContext, String filename) {
         return servletContext
             .getRealPath("/")
             .replaceAll("^(.+appserver).*", "$1")
             + File.separator
             + "apps"
+            + File.separator
+            + filename
         ;
     }
 }

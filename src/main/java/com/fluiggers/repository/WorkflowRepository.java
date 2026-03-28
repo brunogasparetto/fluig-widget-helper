@@ -60,11 +60,7 @@ public class WorkflowRepository extends BaseRepository {
         return version;
     }
 
-    public Set<String> getEventsFromWorkflow(
-        long tenantId,
-        String processId,
-        int version
-    ) {
+    public Set<String> getEventsFromWorkflow(long tenantId, String processId, int version) {
         Set<String> events = new HashSet<>();
 
         InitialContext ic = null;
